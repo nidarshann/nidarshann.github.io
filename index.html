@@ -12,15 +12,16 @@
 html{scroll-behavior:smooth}
 body{font-family:Poppins, sans-serif;background:#020617;color:white}
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 8%;background:rgba(2,6,23,.95);position:sticky;top:0}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 8%;background:rgba(2,6,23,.95);position:sticky;top:0;z-index:1000}
 nav h2{background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;color:transparent}
-.nav-links{display:flex}
-.nav-links a{color:white;text-decoration:none;margin-left:25px}
+.nav-links{display:flex;gap:25px}
+.nav-links a{color:white;text-decoration:none;font-size:15px;transition:.3s}
+.nav-links a:hover{color:#60a5fa}
 .menu{display:none}
 
 .hero{min-height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:40px 20px;background:radial-gradient(circle at 30% 30%,#0f172a,#020617)}
 .hero-box{max-width:750px;display:flex;flex-direction:column;align-items:center}
-.profile{width:190px;height:190px;border-radius:50%;border:4px solid #3b82f6;margin-bottom:20px;object-fit:cover;box-shadow:0 0 35px rgba(59,130,246,.4);image-rendering:auto}
+.profile{width:190px;height:190px;border-radius:50%;border:4px solid #3b82f6;margin-bottom:20px;object-fit:cover;box-shadow:0 0 35px rgba(59,130,246,.4)}
 .hero h1{font-size:46px}
 .typing{color:#60a5fa;height:28px;font-weight:500}
 .hero p{color:#94a3b8;margin:15px 0 25px;max-width:600px}
@@ -31,48 +32,69 @@ nav h2{background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip
 .section h2{font-size:28px;margin-bottom:25px;border-left:5px solid #3b82f6;padding-left:14px}
 .about{color:#cbd5f5;line-height:1.7}
 
-.edu-box{
+.edu-box{background:#020617;border:1px solid #1f2937;padding:25px;border-radius:12px;max-width:700px}
+
+.cert{
 background:#020617;
+padding:22px;
+border-radius:14px;
 border:1px solid #1f2937;
-padding:25px;
-border-radius:12px;
-max-width:700px;
+transition:.35s;
+position:relative;
+overflow:hidden;
 }
+
+.cert:hover{
+transform:translateY(-7px);
+border:1px solid #3b82f6;
+box-shadow:0 0 30px rgba(59,130,246,.25);
+}
+
+.cert h3{
+margin-bottom:8px;
+}
+
+.cert p{
+font-size:14px;
+color:#94a3b8;
+}
+
+.cert::before{
+content:"";
+position:absolute;
+width:100%;
+height:3px;
+background:linear-gradient(90deg,#60a5fa,#a78bfa);
+top:0;
+left:0;
+opacity:.8;
+}
+
+.cert-box ul{margin-top:10px;padding-left:18px;color:#cbd5f5;line-height:1.9}
 
 .skills{display:flex;flex-wrap:wrap}
 .skills span{background:#020617;padding:10px 18px;border-radius:25px;margin:8px;font-size:14px;border:1px solid #1f2937;transition:.3s}
-.skills span:hover{background:#0f172a;transform:scale(1.08);border:1px solid #3b82f6}
+.skills span:hover{background:#0f172a;border:1px solid #3b82f6;transform:scale(1.07)}
 
 .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px}
 .project{background:#020617;border-radius:14px;overflow:hidden;border:1px solid #1f2937;transition:.35s}
-.project:hover{transform:translateY(-8px);border:1px solid #3b82f6;box-shadow:0 0 25px rgba(59,130,246,.3)}
+.project:hover{transform:translateY(-8px);border:1px solid #3b82f6;box-shadow:0 0 25px rgba(59,130,246,.25)}
 .project img{width:100%;height:170px;object-fit:cover}
 .project-content{padding:18px}
 .project-buttons a{font-size:13px;margin-right:12px;color:#60a5fa;text-decoration:none}
 
 .contact{text-align:center}
-.contact-links{
-margin-top:15px;
-display:flex;
-flex-direction:column;
-gap:10px;
-align-items:center;
-}
-
-.contact-links a{
-color:#cbd5f5;
-text-decoration:none;
-display:flex;
-align-items:center;
-gap:10px;
-font-size:15px;
-}
-
+.contact-links{margin-top:15px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.contact-links a{color:#cbd5f5;text-decoration:none;display:flex;align-items:center;gap:10px}
 .contact-links a:hover{color:#60a5fa}
 
 footer{text-align:center;padding:25px;background:#010409;color:#94a3b8;margin-top:40px}
 
-@media(max-width:768px){.nav-links{display:none}.menu{display:block;color:white;font-size:22px}}
+@media(max-width:768px){
+.nav-links{display:none}
+.menu{display:block;color:white;font-size:22px}
+}
+
 </style>
 </head>
 
@@ -84,6 +106,7 @@ footer{text-align:center;padding:25px;background:#010409;color:#94a3b8;margin-to
 <div class="nav-links">
 <a href="#about">About</a>
 <a href="#education">Education</a>
+<a href="#certifications">Certifications</a>
 <a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
@@ -92,7 +115,7 @@ footer{text-align:center;padding:25px;background:#010409;color:#94a3b8;margin-to
 
 <section class="hero">
 <div class="hero-box">
-<img src="images/profile1.jpg" class="profile">
+<img src="profile1.jpg" class="profile">
 <h1>Hi, I'm <span style="background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;color:transparent">Nidarshan N</span></h1>
 <div class="typing" id="typing"></div>
 <p>Data Analyst | SQL | Python | Power BI | BigQuery</p>
@@ -123,15 +146,38 @@ Equipped with a Bachelor’s in Information Science and a portfolio of high-impa
 
 <div class="edu-box">
 <h3>Bachelor of Engineering – Information Science</h3>
-<p style="color:#94a3b8;margin-top:6px">
-Maharaja Institute of Technology, Mysore
-</p>
-<p style="color:#94a3b8">
-Aug 2019 – May 2023
-</p>
-<p style="margin-top:8px">
-CGPA: 7.6 / 10
-</p>
+<p style="color:#94a3b8;margin-top:6px">Maharaja Institute of Technology, Mysore</p>
+<p style="color:#94a3b8">Aug 2019 – May 2023</p>
+<p style="margin-top:8px">CGPA: 7.6 / 10</p>
+</div>
+
+</section>
+
+<section id="certifications" class="section">
+<h2>Certifications</h2>
+
+<div class="cert-grid">
+
+<div class="cert">
+<h3><i class="fa-brands fa-microsoft"></i> Data Analytics</h3>
+<p style="color:#94a3b8">Microsoft</p>
+</div>
+
+<div class="cert">
+<h3><i class="fa-solid fa-database"></i> Learning SQL Programming</h3>
+<p style="color:#94a3b8">LinkedIn Learning</p>
+</div>
+
+<div class="cert">
+<h3><i class="fa-brands fa-python"></i> Python Fundamentals</h3>
+<p style="color:#94a3b8">Great Learning Academy</p>
+</div>
+
+<div class="cert">
+<h3><i class="fa-solid fa-chart-column"></i> Tata Data Visualization: Empowering Business with Effective Insights Simulation</h3>
+<p style="color:#94a3b8">Forage • Feb 2026</p>
+</div>
+
 </div>
 
 </section>
@@ -155,9 +201,9 @@ CGPA: 7.6 / 10
 <div class="project-grid">
 
 <div class="project">
-<img src="images/ecommerce.jpg">
+<img src="ecommerce.jpg">
 <div class="project-content">
-<h3>E‑Commerce Sales Analysis</h3>
+<h3>E-Commerce Sales Analysis</h3>
 <p>Analyzed transactional data using SQL and BigQuery and built Power BI dashboards for KPIs.</p>
 <div class="project-buttons">
 <a href="https://github.com/nidarshann/ecommerce-data-analysis" target="_blank">GitHub Repository</a>
@@ -166,7 +212,7 @@ CGPA: 7.6 / 10
 </div>
 
 <div class="project">
-<img src="images/churn.jpg">
+<img src="churn.jpg">
 <div class="project-content">
 <h3>Customer Churn Analysis</h3>
 <p>Python and SQL analysis identifying key retention factors and churn behavior.</p>
@@ -177,7 +223,7 @@ CGPA: 7.6 / 10
 </div>
 
 <div class="project">
-<img src="images/hr.png">
+<img src="hr.png">
 <div class="project-content">
 <h3>HR Attrition Analysis</h3>
 <p>Built HR dashboards and discovered insights supporting retention strategies.</p>
@@ -194,10 +240,9 @@ CGPA: 7.6 / 10
 <h2>Contact</h2>
 
 <div class="contact-links">
-
 <a href="mailto:nidarshann66@gmail.com">
 <i class="fa-solid fa-envelope"></i>
-Email: nidarshann66@gmail.com
+nidarshann66@gmail.com
 </a>
 
 <a href="https://www.linkedin.com/in/nidarshan-n-1a4324231/" target="_blank">
